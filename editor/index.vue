@@ -119,18 +119,18 @@
         },
         immediate: true
       },
-      'componentInfo.data': {
-        handler (v) {
-          if (v && v.length != 0) {
-            // data变化不引起视图改变，改变其他属性实现
-            this.componentInfo.info.sort = !this.componentInfo.info.sort
-            this.$nextTick(_ => {
-              this.componentInfo.info.sort = !this.componentInfo.info.sort
-            })
-          }
-        },
-        deep: true
-      }
+      // 'componentInfo.data': {
+      //   handler (v) {
+      //     if (v && v.length != 0) {
+      //       // data变化不引起视图改变，改变其他属性实现
+      //       this.componentInfo.info.sort = !this.componentInfo.info.sort
+      //       this.$nextTick(_ => {
+      //         this.componentInfo.info.sort = !this.componentInfo.info.sort
+      //       })
+      //     }
+      //   },
+      //   deep: true
+      // }
     },
     methods: {}
   }

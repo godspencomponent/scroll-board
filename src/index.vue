@@ -4,7 +4,6 @@
       v-if="componentName"
       :is="componentName"
       :config="config"
-      style="width:500px;height:220px"
       @click='click'
     >
     </component>
@@ -36,7 +35,14 @@
       data: {
         type: Array,
         default () {
-          return []
+          return [
+              ['行1列1', '行1列2', '行1列3'],
+              ['行2列1', '行2列2', '行2列3'],
+              ['行3列1', '行3列2', '行3列3'],
+              ['行4列1', '行4列2', '行4列3'],
+              ['行5列1', '行5列2', '行5列3'],
+              ['行6列1', '行6列2', '行6列3'],
+            ]
         },
         editor: {
           ignore: true
@@ -46,6 +52,19 @@
         type: Object,
         default () {
           return {
+            rowNum: 5,
+            waitTime: 2000,
+            headerHeight: 35,
+            carousel: 'single',
+            header: '',
+            headerString: '列1, 列2, 列3',
+            headerBGC: '#00BAFF',
+            oddRowBGC: '#003B51',
+            evenRowBGC: '#0A2732',
+            columnWidth: [],
+            align: [],
+            index: true,
+            indexHeader: '#',
           }
         },
       }
@@ -57,7 +76,8 @@
     },
     computed: {
       config () {
-        let {info, data} = this
+        let data = this.data
+        console.log(data, '---111--')
         if (this.datasourcekey) {
           const dataStr = this.dataHubGet && this.dataHubGet(this.datasourcekey)
           try {
@@ -67,10 +87,13 @@
             data = []
           }
         }
-        const arr = /,/.test(info.headerString) ? info.headerString.split(',') : info.headerString.split('，')
-        info.header = info.headerString ? arr : ''
+        if (this.info.headerString) {
+          const arr = /,/.test(this.info.headerString) ? this.info.headerString.split(',') : this.info.headerString.split('，')
+          this.info.header = this.info.headerString ? arr : ''
+        }
+        console.log(data, '-----')
         return {
-          ...info,
+          ...this.info,
           data: data,
         }
       }
