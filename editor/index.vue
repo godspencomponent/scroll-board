@@ -12,6 +12,10 @@
           <el-form-item v-if="usedatasource" label="数据源:" label-width="100px">
             <el-input placeholder="填写数据总线的key" v-model="componentInfo.datasourcekey"></el-input>
           </el-form-item>
+          <div v-else>
+            <el-form-item label="默认数据源:" label-width="100px"></el-form-item>
+            <attr-data :content.sync="componentInfo.data" type='array' class='dataA'></attr-data>
+          </div>
         </el-form>
       </el-card>
       <el-card class="box-card">
@@ -139,7 +143,9 @@
 <style lang="stylus" rel="stylesheet/stylus" type="text/stylus" scoped>
   .box-card {
     margin-top: 30px;
-
+    .dataA {
+      margin-left 20px
+    }
     .tag {
       padding-right: 80px;
       position: relative;
